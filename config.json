@@ -1,0 +1,7 @@
+{
+  "ingredient_tag_name": "ProductIngredients",
+  "excel_path": "xls/Список продукции_С14_2018.xlsx",
+  "excel_fields": ["Concept Code (= Product Profile - PP в регистрационной базе России)",
+                 "СОСТАВ"],
+  "namespace": {"urn": "urn:dce_product_text"}
+}
