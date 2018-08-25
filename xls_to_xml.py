@@ -5,7 +5,7 @@ import logging
 
 
 def setup_logger(name, log_file, level=logging.INFO):
-    formatter = logging.Formater('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler = logging.FileHandler(log_file, mode='w')
     handler.setFormatter(formatter)
 
@@ -20,7 +20,7 @@ def setup_loggers():
     logger_names = ['not_founds', 'overrides']
     loggers = dict(zip(logger_names, [None for _ in range(len(logger_names))]))
     for name in logger_names:
-        loggers.append(setup_logger(name, f"messages/{name}.log"))
+        loggers[name] = setup_logger(name, f"messages/{name}.log")
     return loggers
 
 
@@ -96,7 +96,7 @@ def main():
         concept_code = product.find('urn:ProfileNumber', namespaces).text
         ingredients = get_ingredients(source, concept_code, loggers)
         append_or_set_ingredients(product, ingredients, config['ingredient_tag_name'],
-                                                            namespaces, counter, logger)
+                                                            namespaces, counter, loggers)
 
     tree.write("xml/output.xml", encoding="utf8")
     nl = '\n'
