@@ -1,5 +1,7 @@
 {
   "ingredient_tag_name": "ProductIngredients",
+  "output_file": "output.xml",
+  "xml_path": "xml/DCEProductText_180815_KZ.xml",
   "excel_path": "xls/Список продукции_С14_2018.xlsx",
   "excel_fields": ["Concept Code (= Product Profile - PP в регистрационной базе России)",
                  "СОСТАВ"],

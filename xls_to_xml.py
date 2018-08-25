@@ -20,7 +20,7 @@ def setup_loggers():
     logger_names = ['not_founds', 'overrides']
     loggers = dict(zip(logger_names, [None for _ in range(len(logger_names))]))
     for name in logger_names:
-        loggers[name] = setup_logger(name, f"messages/{name}.log")
+        loggers[name] = setup_logger(name, f"output/{name}.log")
     return loggers
 
 
@@ -89,7 +89,7 @@ def main():
         "appended": 0,
     }
 
-    tree = ET.parse('xml/DCEProductText_180815_KZ.xml')
+    tree = ET.parse(config['xml_path'])
     products = get_products(tree, namespaces)
 
     for product in products:
@@ -98,7 +98,7 @@ def main():
         append_or_set_ingredients(product, ingredients, config['ingredient_tag_name'],
                                                             namespaces, counter, loggers)
 
-    tree.write("xml/output.xml", encoding="utf8")
+    tree.write(f"output/{config['output_file']}", encoding="utf8")
     nl = '\n'
     print(f"{counter['not_found']} - not found{nl}{counter['updated']} - updated{nl}{counter['appended']} - appended{nl}{len(products)} - Total")
 
